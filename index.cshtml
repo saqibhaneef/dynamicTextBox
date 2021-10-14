@@ -1,0 +1,209 @@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/TemplateCss.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+
+    <style>
+        #kindDescriptionOfGoods p {
+            margin: 0px;
+            padding: 5px 0px 0px 5px;
+            font-size: 12px;
+            display: inline;
+        }
+        .tc {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        td{
+            margin:0px;
+            padding:0px;
+        }
+        
+    </style>
+</head>
+<body>
+    <form id="detailsForm">
+        <div>
+            <div class="mwrapper1">
+                <div class="mcontainerr">
+                    <div class="main-prt-shp">
+                        <h2>PARTICULARS FURNISHED BY SHIPPER</h2>
+                        <input type="text" id="BookingNo" placeholder="Enter Booking Id" class="submit_on_enter">
+                        <div class="inner-prt-shp">
+                            <div class="prt-box-1">
+                                <h4>Kind of Packages; Description of goods; Marks and Numbers; Container No./Seal No.</h4>
+                                <div>
+                                    <div style="width:793px;height:auto;min-height:300px; border:1px solid" id="kindDescriptionOfGoods">
+
+                                        <table>
+
+                                        </table>
+                                        <table id='tbhold'>
+                                            <thead>
+                                                <tr>
+                                                    <td style="padding-left:14px;" colspan="6">
+                                                        <button type="button" name="add" id="add" class="btn btn-success">Add</button>
+                                                    </td>
+                                                </tr>
+                                                <tr style="font-size:12px;">
+                                                    <th width="15%">Container No</th>
+                                                    <th width="15%">Seal No</th>
+                                                    <th width="15%">No of Containers</th>
+                                                    <th width="15%">Description</th>
+                                                    <th width="15%">Weight</th>
+                                                    <th width="15%">Measurement</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>                                        
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>Above particulars as declared by Shipper.</p>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <input style="margin-top:30px" type="button" id="btnSave" class="btn btn-primary" value="Save" />
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>
+
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript" src="~/Scripts/jquery.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery-ui.js"></script>
+
+
+<script>
+
+    
+
+        //Add input field
+        var i = 0;
+        $("#add").click(function (e) {
+            i++;
+            e.preventDefault();
+            $("#tbhold").append('<tr class="row' + i + '"><td><div class="col-md-12 tb"><input type="text" name="ContainerNo' + i + '"  class="form-control tb" /></div></td><td><div class="col-md-12"><input type="text" name="SealNo' + i + '"  class="form-control tb" /></div></td><td><div class="col-md-12"><input type="text" name="NoOfContainers' + i + '"  class="form-control tb" /></div></td><td><div class="col-md-12 tb"><input type="text" name="Description' + i + '"  class="form-control tb" /></div></td><td><div class="col-md-12"><input type="text" name="GrossWeight' + i + '"  class="form-control tb" /></div></td><td><div class="col-md-12"><input type="text" name="Measurement' + i + '"  class="form-control tb" /></div></td><td><button type="button" class="btn btn-danger btn_remove" id="' + i + '" name="remove">X</button></td></tr>');
+            //$("#weight").append('<tr class="row' + i + '"><td><div class="col-md-12"><input type="text" name="GrossWeight' + i + '"  class="form-control tc" /></div></td></tr>');
+            //$("#measurement").append('<tr class="row' + i + '"><td><div class="col-md-12"><input type="text" name="Measurement' + i + '"  class="form-control tc" /></div></td></tr>');
+        });
+
+        //Remove input field
+        $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+
+            $(".row" + button_id).each(function () {
+                $(this).remove();
+            });
+
+        });
+
+   
+
+
+
+   
+    
+    var mainArr = [];
+    var tmpArr = [];
+
+    function loadValues() {
+        var mainTable = $('#tbhold');
+        var tr = mainTable.find('tbody tr');
+        tr.each(function () {
+            tmpArr = []; // has to clean on every found for take every td values into array
+
+            for (let i = 0; i < 6; i++) {
+                var values = $(this).find('input,select').val();
+                tmpArr.push(values);
+            }
+
+            //$(this).find('td').each(function () {
+            //    var values = $(this).find('input, select').val();                
+            //});
+            mainArr.push(tmpArr);
+        });
+        return mainArr;        
+    }
+
+
+
+
+    var SelectedBookingNo = null;
+
+    //Save to db by click
+    $('#btnSave').click(function () {      
+        
+        var list = [];
+        list = loadValues();
+        var postData = { values: list };
+        console.log(postData);
+        debugger;
+        $.ajax({
+            url: "InsertDetails",
+            type: "Post",
+            data: postData,
+            success: function (data) {
+                debugger;
+                console.log(data);
+            },
+            error: function () {
+                console.log('something went wrong - debug it!');
+            }
+        });
+    });
+
+
+    
+
+    $('#BookingNo').keypress(function (event) {
+        if (event.keyCode == '13') {
+            SelectedBookingNo = $("#BookingNo").val();
+            event.preventDefault();
+            debugger
+            $.ajax({
+                url: "/Report/GetDetails",
+                type: "POST",
+                data: { BookingNumber: SelectedBookingNo },
+                success: function (data) {
+                    debugger;
+                    console.log(data);                    
+                    $.each(data, function (i) {
+                        $("#kindDescriptionOfGoods").append("<div><p width='25%'>" + data[i].ContainerNo + "</p><p width='25%'>" + data[i].SealNo + "</p><p width='25%'>" + data[i].NoOfContainers + "</p><p width='25%'>" + data[i].Description + "</p></div>");
+                        //$("#kindDescriptionOfGoods").append("<p>" + data[i].ContainerNo + data[i].SealNo + data[i].NoOfContainers + data[i].Description + "</p>");
+                        $("#weight").append("<p>" + data[i].NoOfContainers + "</p>");                        
+                        console.log(data[i].NoOfContainers);
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+            });
+
+        }
+
+    });
+
+
+
+
+</script>
