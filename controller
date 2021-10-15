@@ -1,0 +1,18 @@
+[HttpPost]
+        public JsonResult InsertDetails(List<string[]> details)
+        {
+            foreach (var item in details)
+            {
+                tbl_Details tbl_Details = new tbl_Details
+                {
+                    ContainerNo = item[0],
+                    Description=item[1]
+                };
+            }
+            return Json("ok",JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetDetails(int BookingNumber)
+        {
+            var detailsList=db.tbl_Details.Select(x=> new { BookingId=x.BookingId,ContainerNo=x.ContainerNo,SealNo=x.SealNo,NoOfContainers=x.NoOfContainers,Description=x.Description,GrossWeight=x.GrossWeight,Measurement=x.Measurement }).Where(x=>x.BookingId==BookingNumber).ToList();
+            return Json(detailsList,JsonRequestBehavior.AllowGet);
+        }
