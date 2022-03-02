@@ -1,0 +1,2611 @@
+@model M3LogiCore.Entities.BillofLadingPrintingResponseModel
+
+@{
+
+    ViewBag.Title = "";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        @{
+            string title = ViewBag.BL.ToString();
+            var a = title.Substring(0, 13);}@a | M3
+        </title>
+        <link rel="icon" type="image/png" href="~/Assets/img/favicon.ico">
+        <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Assets/css/jquery-ui.css" rel="stylesheet" />
+        <link href="~/Assets/css/datepicker/datepicker.min.css" rel="stylesheet" />
+        <script src="~/Assets/plugins/jquery/jquery.min.js"></script>
+
+        <script src="~/Assets/js/jquery-ui.js"></script>
+        <script src="~/Assets/js/bootstrap.min.js"></script>
+        <style type="text/css">
+                /*css_saqib_start*/
+            .disable {
+                pointer-events: none;
+                opacity: 0.4;
+            }
+                .error {
+                    border: 1px solid red !important;
+                }
+
+                .bkng-three {
+                    display: inline-block;
+                    width: 100%;
+                    padding: 11px 11px 8.4px 11px;
+                    box-sizing: border-box;
+                    vertical-align: top;
+                }
+
+                    .bkng-three p.txtmain {
+                        font-weight: 700;
+                        font-size: 10px;
+                        color: #000;
+                    }
+
+                .form-control {
+                    display: block;
+                    width: 100%;
+                    height: 25px;
+                    padding: 0px 12px;
+                    font-size: 13px;
+                    line-height: 2.428571;
+                    color: #555;
+                    background-color: #fff;
+                    background-image: none;
+                    border: 1px solid #4095ef;
+                    border-radius: 0px;
+                }
+
+
+                .Shipper {
+                    width: 330px;
+                    height: 90px;
+                    border: 1px solid #4095EF;
+                    font-size: 10px;
+                    color: #13375d;
+                }
+
+                    .Shipper p {
+                        margin: 0px;
+                        padding: 5px 0px 0px 5px;
+                    }
+
+
+                /*Middle Section*/
+
+                #kindDescriptionOfGoods p {
+                    margin: 0px;
+                    padding: 5px 0px 0px 5px;
+                    font-size: 12px;
+                    display: inline;
+                }
+
+                #tbhold thead tr th {
+                    text-align: center;
+                }
+
+                #tbhold tbody:last-child {
+                    border-top: 1px solid #4095EF;
+                }
+
+                #tbhold tr td {
+                    border-top: none;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                }
+
+                .tb {
+                    height: 40px !important;
+                    margin: 0px;
+                    min-height: 1px;
+                    padding-right: 1px !important;
+                    padding-left: 1px !important;
+                }
+
+
+
+                #tbdetail {
+                    margin-top: 10px;
+                }
+
+                /*Bottom Section*/
+                .autoCompletePara:empty:before {
+                    content: attr(data-placeholder);
+                }
+                /*jquery-ui css*/
+                .ui-autocomplete {
+                    overflow: auto;
+                    height: 300px;
+                }
+
+                .crgh-nme2 ul li {
+                    display: inline-block;
+                    width: 187px;
+                    padding: 7px 12px 7px 12px;
+                    /*margin-right: 11px;*/
+                    border-right: 1px solid #4095EF;
+                    border-top: 1px solid #4095EF;
+                    border-bottom: 1px solid #4095EF;
+                    vertical-align: top;
+                    height: 70px;
+                }
+
+                    .crgh-nme2 ul li p {
+                        font-size: 11px;
+                        font-weight: bold;
+                        color: #000000;
+                        margin: 0px;
+                        padding-bottom: 6.8px;
+                    }
+
+
+                    .crgh-nme2 ul li:last-child {
+                        margin-right: 0px;
+                        border-right: none;
+                        width: 260px;
+                    }
+
+                #tbdetail tr:nth-child(odd) {
+                    background-color: #f2f2f2;
+                }
+
+                input[type="checkbox"] {
+                    display: inline-block;
+                    width: auto;
+                }
+
+                .btnTable tr td {
+                    padding: 5px 5px 20px;
+                }
+                /*css_saqib_end*/
+                body {
+                    font-family: Verdana, Geneva, sans-serif;
+                }
+
+                * {
+                    padding: 0px;
+                    margin: 0px;
+                    box-sizing: border-box;
+                }
+
+                input {
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: #13375d;
+                    margin: 0px;
+                    border: 1px solid #4095EF;
+                    padding: 5px;
+                    width: 100%;
+                }
+
+                    input::placeholder {
+                        color: #000000;
+                    }
+
+                textarea {
+                    width: 100%;
+                    resize: none;
+                    padding: 10px 10px 10px 10px;
+                    border: 1px solid #4095EF;
+                    font-size: 12px;
+                    color: #13375d;
+                }
+
+                .txtar {
+                    font-size: 12px;
+                    font-weight: 400;
+                    height: 106.8px;
+                    line-height: 15px !important;
+                }
+
+                .txtardelv {
+                    font-size: 12px;
+                    font-weight: 400;
+                    min-height: 69px;
+                    line-height: 15px !important;
+                }
+
+                .txtar.txtar2 {
+                    font-weight: 400;
+                }
+
+                .txtinpt {
+                    font-size: 12px !important;
+                    font-weight: 400 !important;
+                    height: 22px !important;
+                }
+
+                .bkng-one p.txtmain {
+                    font-weight: 700;
+                    font-size: 10px;
+                    color: #000;
+                }
+
+                .txtbgpara.txtar {
+                    line-height: 12px !Important;
+                    font-size: 11px !Important;
+                    height: 209px;
+                }
+
+                .mcontainerr {
+                    width: 825px;
+                    /*overflow: hidden;*/
+                    margin: 15px auto 0 auto;
+                    /*background: url(/assets/images/watermark.jpg);*/
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    /*border: 1px solid #cccccc;
+                padding: 19px 31px 20px;*/
+                    /*height: 1195px;*/
+                    position: relative;
+                    /*page-break-after: always;*/
+                }
+
+                .main-5floor {
+                    font-size: 0px;
+                }
+
+                .flr-left {
+                    display: inline-block;
+                    width: 350px;
+                    padding: 9px 15px 9px 15px;
+                    box-sizing: border-box;
+                    border-bottom: 1px solid #4095EF;
+                }
+
+                .flr-right {
+                    display: inline-block;
+                    width: 471px;
+                    vertical-align: top;
+                    border-left: 1px solid #4095EF;
+                }
+
+                .flr-left > h5 {
+                    margin: 0px;
+                    font-size: 15px;
+                    font-weight: bold;
+                    color: #1e1e1e;
+                    padding-bottom: 11px;
+                }
+
+                .flr-left textarea {
+                    width: 94%;
+                    text-align: left;
+                    height: 107px;
+                    resize: none;
+                    padding: 11px;
+                    border: 1px solid #d2dbe4;
+                }
+
+                .main-bkng {
+                    font-size: 0px;
+                    border-bottom: 1px solid #4095EF;
+                }
+
+                .bkng-one {
+                    display: inline-block;
+                    width: 50%;
+                    padding: 11px 11px 8.4px 11px;
+                    box-sizing: border-box;
+                    vertical-align: top;
+                }
+
+                .bkng-two {
+                    display: inline-block;
+                    width: 50%;
+                    padding: 11px 11px 8.4px 11px;
+                    box-sizing: border-box;
+                    border-left: 1px solid #4095EF;
+                }
+
+                    .bkng-two.nopd {
+                        padding: 0px;
+                    }
+
+                    .bkng-two ul {
+                        margin: 0px;
+                        font-size: 0px;
+                        list-style: none;
+                    }
+
+                        .bkng-two ul li {
+                            float: left;
+                            width: 50%;
+                            padding-bottom: 0px;
+                        }
+
+                    .bkng-two.nopd ul {
+                        overflow: hidden;
+                        border-bottom: 1px solid #4095EF;
+                    }
+
+                        .bkng-two.nopd ul li {
+                            padding: 4px 11px;
+                        }
+
+                        .bkng-two.nopd ul:last-child {
+                            border-bottom: none;
+                        }
+
+                    .bkng-two ul li input {
+                        width: 100%;
+                    }
+
+                    .bkng-two ul li {
+                        padding-bottom: 5px;
+                    }
+
+                        .bkng-two ul li p {
+                            font-size: 11px;
+                            font-weight: 500;
+                            color: #000000;
+                            margin: 0px;
+                            padding-bottom: 0px;
+                            padding-top: 5px;
+                        }
+
+                    .bkng-one p, .bkng-two p, .bkng-three p {
+                        font-size: 10px;
+                        font-weight: 500;
+                        color: #000000;
+                        margin: 0px;
+                        padding-bottom: 6.8px;
+                    }
+
+                .bkngtp.bkng-one, .bkngtp.bkng-two {
+                    padding: 10px 11px 7.4px 11px;
+                }
+
+                    .bkngtp.bkng-one input, .bkngtp.bkng-two input {
+                        width: 50%;
+                        float: right;
+                    }
+
+                    .bkngtp.bkng-one p, .bkngtp.bkng-two p {
+                        float: left;
+                    }
+
+                        .bkngtp.bkng-one p.txtinpt, .bkngtp.bkng-two p.txtinpt {
+                            float: right;
+                        }
+
+                .main-bkgng.nobrdlft {
+                    border-left: none;
+                }
+
+                .bkng-one span, .bkng-two span {
+                    font-size: 12.3px;
+                    font-weight: bold;
+                    color: #000000;
+                    margin: 0px;
+                }
+
+                .bkng-one input, .bkng-two input {
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: #13375d;
+                    margin: 0px;
+                    border: 1px solid #4095EF;
+                    padding: 3px 5px;
+                }
+
+                    .bkng-one input::placeholder, .bkng-two input::placeholder {
+                        color: #000000;
+                    }
+
+                .main-cngnee {
+                    font-size: 0px;
+                }
+
+                .cngnee-left {
+                    display: inline-block;
+                    width: 350px;
+                    padding: 7px 11px 9px 11px;
+                    box-sizing: border-box;
+                    border-bottom: 1px solid #4095EF;
+                    height: 125px;
+                }
+
+                .cngnee-right {
+                    display: inline-block;
+                    width: 471px;
+                    vertical-align: top;
+                    border-left: 1px solid #4095EF;
+                    border-bottom: 1px solid #4095EF;
+                    min-height: 150px;
+                }
+
+                .main-cargo {
+                    font-size: 0px;
+                    border-bottom: 1px solid #d2dbe4;
+                }
+
+                .type-dr-one {
+                    display: inline-block;
+                    width: 137px;
+                    padding: 11px 11px 11px 11px;
+                    box-sizing: border-box;
+                }
+
+                .type-dr-two {
+                    display: inline-block;
+                    width: 137px;
+                    padding: 11px 11px 11px 11px;
+                    box-sizing: border-box;
+                    border-left: 1px solid #d2dbe4;
+                }
+
+                .type-dr-three {
+                    display: inline-block;
+                    width: 137px;
+                    padding: 11px 11px 11px 11px;
+                    box-sizing: border-box;
+                    border-left: 1px solid #d2dbe4;
+                }
+
+                    .type-dr-one p, .type-dr-two p, .type-dr-three p {
+                        font-size: 11px;
+                        font-weight: bold;
+                        color: #13375d;
+                        margin: 0px;
+                        padding-bottom: 6.8px;
+                    }
+
+                    .type-dr-one span, .type-dr-two span, .type-dr-three span {
+                        font-size: 12.3px;
+                        font-weight: bold;
+                        color: #000000;
+                        margin: 0px;
+                    }
+
+                .cngnee-left > h5 {
+                    margin: 0px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: #1e1e1e;
+                    padding-bottom: 5px;
+                }
+
+                .cngnee-left textarea {
+                    height: 87px;
+                }
+
+                .cngnee-left div > h5 {
+                    font-size: 15px;
+                    font-weight: bold;
+                    color: #13375d;
+                    margin: 0px;
+                    padding-bottom: 5px;
+                }
+
+                .cngnee-left div > p {
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: #13375d;
+                    margin: 0px;
+                    line-height: 23px;
+                }
+
+                    .cngnee-left div > p a {
+                        color: #4093ed;
+                        text-decoration: none;
+                        padding-left: 5px;
+                    }
+
+                .tpe-dr {
+                    padding: 11px;
+                    box-sizing: border-box;
+                }
+
+                    .tpe-dr p {
+                        font-size: 11px;
+                        font-weight: bold;
+                        color: #13375d;
+                        margin: 0px;
+                        padding-bottom: 6.8px;
+                    }
+
+                    .tpe-dr input {
+                        width: 97%;
+                        padding: 5px 5px 31px 5px;
+                    }
+
+                .main-nftfy-prty {
+                    font-size: 0px;
+                }
+
+                .nftfy-left {
+                    display: inline-block;
+                    width: 350px;
+                    padding: 7px 11px 8.5px 11px;
+                    box-sizing: border-box;
+                    border-bottom: 1px solid #4095EF;
+                    /*border-right: 1px solid #d2dbe4;*/
+                    height: 125px;
+                }
+
+                    .nftfy-left > h5 {
+                        margin: 0px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        color: #1e1e1e;
+                        padding-bottom: 5px;
+                    }
+
+                    .nftfy-left textarea {
+                        height: 87px;
+                    }
+
+                    .nftfy-left div > h5 {
+                        font-size: 12px;
+                        font-weight: bold;
+                        color: #13375d;
+                        margin: 0px;
+                        padding-bottom: 5px;
+                    }
+
+                .nftfy-right {
+                    display: inline-block;
+                    width: 471px;
+                    vertical-align: top;
+                    border-left: 1px solid #4095EF;
+                }
+
+                .main-nftfy-inner {
+                    font-size: 0px;
+                    border-bottom: 1px solid #4095EF;
+                    padding: 11px 11px 8.4px 11px;
+                    height: 164px;
+                }
+
+                    .main-nftfy-inner textarea {
+                        height: 145px;
+                    }
+
+                .nfty-one {
+                    display: inline-block;
+                    width: 206px;
+                    padding: 11px 11px 8.4px 11px;
+                    box-sizing: border-box;
+                    border-right: 1px solid #d2dbe4;
+                }
+
+                .nfty-two {
+                    display: inline-block;
+                    width: 206px;
+                    padding: 11px 11px 8.4px 11px;
+                    box-sizing: border-box;
+                }
+
+                    .nfty-one p, .nfty-two p {
+                        font-size: 11px;
+                        font-weight: bold;
+                        color: #13375d;
+                        margin: 0px;
+                        padding-bottom: 6.8px;
+                    }
+
+                    .nfty-one span, .nfty-two span {
+                        font-size: 12.3px;
+                        font-weight: bold;
+                        color: #000000;
+                        margin: 0px;
+                    }
+
+                    .nfty-one input, .nfty-two input {
+                        width: 94%;
+                    }
+
+                .main-car-rier {
+                    font-size: 0px;
+                }
+
+                .carie-left {
+                    display: inline-block;
+                    width: 412.5px;
+                    padding: 0px 0px 0px 0px;
+                    box-sizing: border-box;
+                    border-right: 1px solid #d2dbe4;
+                }
+
+                .carie-right {
+                    display: inline-block;
+                    width: 412.5px;
+                    vertical-align: top;
+                }
+
+                .main-creye {
+                    font-size: 0px;
+                    border-bottom: 1px solid #d2dbe4;
+                }
+
+                .creye-one {
+                    display: inline-block;
+                    width: 205.5px;
+                    padding: 11px 11px 8.4px 11px;
+                    box-sizing: border-box;
+                    border-right: 1px solid #d2dbe4;
+                }
+
+                .creye-two {
+                    display: inline-block;
+                    width: 205.5px;
+                    padding: 11px 11px 8.4px 11px;
+                    box-sizing: border-box;
+                }
+
+                    .creye-one p, .creye-two p {
+                        font-size: 11px;
+                        font-weight: bold;
+                        color: #13375d;
+                        margin: 0px;
+                        padding-bottom: 6.8px;
+                    }
+
+                    .creye-one span, .creye-two span {
+                        font-size: 12.3px;
+                        font-weight: bold;
+                        color: #000000;
+                        margin: 0px;
+                    }
+
+                    .creye-one input, .creye-two input {
+                        width: 94%;
+                    }
+
+                .main-prt-section {
+                    padding: 11px 11px;
+                }
+
+                .main-prtc-furs {
+                    border-radius: 3px 3px 0 0;
+                    border: 1px solid #dee6ee;
+                }
+
+                    .main-prtc-furs h2 {
+                        margin: 0px;
+                        text-align: center;
+                        font-size: 13px;
+                        font-weight: bold;
+                        color: #000000;
+                        padding: 12.5px;
+                        background: #dee6ee;
+                    }
+
+                .prt-list1 {
+                }
+
+                    .prt-list1 ul {
+                        margin: 0px;
+                        list-style: none;
+                        font-size: 0;
+                    }
+
+                        .prt-list1 ul li {
+                            display: inline-block;
+                            width: 17%;
+                            vertical-align: top;
+                        }
+
+                            .prt-list1 ul li:nth-child(3) {
+                                width: 32%;
+                            }
+
+                            .prt-list1 ul li:last-child p {
+                                border-right: none;
+                            }
+
+                            .prt-list1 ul li:nth-child(4) p, .prt-list1 ul li:nth-child(5) p {
+                                padding-bottom: 23px;
+                            }
+
+                            .prt-list1 ul li p {
+                                margin: 0px;
+                                font-size: 11px;
+                                font-weight: bold;
+                                color: #13375d;
+                                border-right: 1px solid #dee6ee;
+                                border-bottom: 1px solid #dee6ee;
+                                padding: 11px;
+                            }
+
+                .prt-list2 {
+                }
+
+                    .prt-list2 ul {
+                        margin: 0px;
+                        list-style: none;
+                        font-size: 0;
+                    }
+
+                        .prt-list2 ul li {
+                            display: inline-block;
+                            width: 17%;
+                            vertical-align: top;
+                            padding: 11px;
+                            min-height: 225px;
+                            box-sizing: border-box;
+                            border-right: 1px solid #dee6ee;
+                            border-bottom: 1px solid #dee6ee;
+                        }
+
+                            .prt-list2 ul li:nth-child(3) {
+                                width: 32%;
+                                text-align: center;
+                            }
+
+                            .prt-list2 ul li:last-child {
+                                border-right: none;
+                            }
+
+                            .prt-list2 ul li textarea {
+                                width: 100%;
+                                font-size: 12px;
+                                font-weight: bold;
+                                color: #000000;
+                                margin: 0px;
+                                border: 1px solid #d2dbe4;
+                                padding: 5px;
+                                resize: none;
+                                height: 204px;
+                                box-sizing: border-box;
+                            }
+
+                .tltno {
+                }
+
+                    .tltno h3 {
+                        margin: 0px;
+                        font-size: 11px;
+                        font-weight: bold;
+                        color: #13375d;
+                        padding: 11px 11px;
+                    }
+
+                .main-prepaid {
+                    border-radius: 3px 3px 0 0;
+                    border: 1px solid #dee6ee;
+                    margin: 15px 0;
+                }
+
+                .prep-list1 {
+                }
+
+                    .prep-list1 ul {
+                        margin: 0px;
+                        font-size: 0px;
+                        list-style: none;
+                        background: #dee6ee;
+                        border-bottom: 1px solid #d1d8e0;
+                    }
+
+                        .prep-list1 ul li {
+                            display: inline-block;
+                            width: 25%;
+                        }
+
+                            .prep-list1 ul li p {
+                                font-size: 11px;
+                                font-weight: bold;
+                                margin: 0px;
+                                color: #000000;
+                                padding: 8.5px 11px;
+                            }
+
+                .prep-list2 ul {
+                    margin: 0px;
+                    font-size: 0px;
+                    list-style: none;
+                    background: #dee6ee;
+                }
+
+                    .prep-list2 ul li {
+                        display: inline-block;
+                        width: 24.8%;
+                        border-left: 1px solid #cbd2da;
+                    }
+
+                        .prep-list2 ul li:first-child {
+                            border-left: none;
+                        }
+
+                        .prep-list2 ul li p {
+                            font-size: 11px;
+                            font-weight: bold;
+                            margin: 0px;
+                            color: #000000;
+                            padding: 12.5px 11px;
+                        }
+
+                        .prep-list2 ul li:nth-child(2) p, .prep-list2 ul li:nth-child(3) p {
+                            color: #4093ed;
+                            background: #d4dde6;
+                        }
+
+                        .prep-list2 ul li:nth-child(4) p {
+                            color: #f74545;
+                        }
+
+                .dest-tble {
+                }
+
+                    .dest-tble table {
+                        width: 100%;
+                    }
+
+                        .dest-tble table tbody tr td {
+                            font-size: 11px;
+                            font-weight: bold;
+                            color: #13375d;
+                            width: 10%;
+                            border-right: 1px solid #dee6ee;
+                            padding-left: 5px;
+                        }
+
+                            .dest-tble table tbody tr td:last-child {
+                                border-right: none;
+                            }
+
+                        .dest-tble table tbody tr.ctnr td {
+                            padding-top: 5px;
+                        }
+
+                        .dest-tble table tbody tr.nober td {
+                            padding-bottom: 5px;
+                        }
+
+                        .dest-tble table tbody tr td.noofpgs {
+                            text-align: center;
+                        }
+
+                        .dest-tble table tbody tr.ent-td td {
+                            height: 200px;
+                            vertical-align: top;
+                        }
+
+                        .dest-tble table tbody tr td input {
+                            width: 65%;
+                        }
+
+                .bded h3 {
+                    margin: 0px;
+                    font-size: 11px;
+                    font-weight: bold;
+                    color: #13375d;
+                    padding: 11px 11px;
+                    border-top: 1px solid #dee6ee;
+                }
+
+                .rec-list {
+                }
+
+                    .rec-list ul {
+                        margin: 0px;
+                        list-style: none;
+                        font-size: 0px;
+                    }
+
+                        .rec-list ul li {
+                            display: block;
+                            padding-left: 11px;
+                        }
+
+                            .rec-list ul li p {
+                                font-size: 11px;
+                                font-weight: bold;
+                                color: #13375d;
+                                margin: 0px;
+                                line-height: 25px;
+                            }
+
+                .fnl-des {
+                    padding: 11px;
+                    box-sizing: border-box;
+                }
+
+                    .fnl-des p {
+                        font-size: 11px;
+                        font-weight: bold;
+                        color: #13375d;
+                        margin: 0px;
+                        padding-bottom: 6.8px;
+                    }
+
+                    .fnl-des input {
+                        width: 97%;
+                        padding: 14.5px 5px 14.5px 5px;
+                    }
+
+                .main-bor {
+                    border: 2px solid #4095EF;
+                    border-radius: 11px;
+                    font-size: 0px;
+                }
+
+                .fr-dlv {
+                    padding: 11px 11px 8.4px 11px;
+                }
+
+                    .fr-dlv .hd {
+                        font-size: 12px;
+                        font-weight: 500;
+                        color: #000;
+                        padding-bottom: 5px;
+                    }
+
+                    .fr-dlv textarea {
+                        /*height: 69px;*/
+                        height: 88px;
+                    }
+                /*.nftfy-right .bkng-one, .nftfy-right .bkng-two{
+              width: 195px;
+            }*/
+                .main-bor {
+                }
+
+                    .main-bor > div {
+                        display: inline-block;
+                        width: 350px;
+                        vertical-align: top;
+                        padding: 0px;
+                    }
+
+                        .main-bor > div:last-child {
+                            width: 471px;
+                        }
+
+                .main-bkgng {
+                    border-bottom: none;
+                    border-left: 1px solid #4095EF;
+                }
+
+                .main-prt-shp {
+                }
+
+                    .main-prt-shp h2 {
+                        text-align: center;
+                        color: #000000;
+                        font-size: 16px;
+                        font-weight: bold;
+                        margin: 0px;
+                        padding: 8px 0;
+                    }
+
+                .inner-prt-shp {
+                    border: 2px solid #4095EF;
+                    border-radius: 15px;
+                    font-size: 0px;
+                }
+
+                    .inner-prt-shp > div {
+                        display: table-cell;
+                        min-height: 200px;
+                    }
+
+                .prt-box-1 {
+                    width: 561px;
+                    vertical-align: top;
+                }
+
+                    .prt-box-1 h4 {
+                        font-size: 11px;
+                        color: #000000;
+                        margin: 0px;
+                        padding: 12px 15px;
+                        font-weight: 700;
+                        border-bottom: 1px solid #4095EF;
+                    }
+
+                    .prt-box-1 > div {
+                        padding: 15px;
+                    }
+
+                        .prt-box-1 > div + div p {
+                            font-size: 11.5px;
+                            margin: 0px;
+                            padding: 0px 0 0 0;
+                        }
+
+                            .prt-box-1 > div + div p span {
+                                display: block;
+                                color: #000000;
+                                font-size: 11px;
+                            }
+
+                .prt-box-2 {
+                    width: 125px;
+                    border-left: 1px solid #4095EF;
+                    vertical-align: top;
+                }
+
+                    /*.prt-box-2 input {
+                    margin: 15px 5px 5px 5px;
+                    width: 90%;
+                }*/
+
+                    .prt-box-2 textarea {
+                        margin: 15px 5px 5px 5px;
+                        width: 90%;
+                    }
+
+                    .prt-box-2 h4 {
+                        font-size: 12px;
+                        color: #000000;
+                        margin: 0px;
+                        padding: 11px 15px;
+                        font-weight: bold;
+                        border-bottom: 1px solid #4095EF;
+                    }
+
+                .prt-box-3 {
+                    width: 135px;
+                    border-left: 1px solid #4095EF;
+                    vertical-align: top;
+                }
+
+                    /*.prt-box-3 input {
+                    margin: 15px 5px 5px 5px;
+                    width: 90%;
+                }*/
+
+                    .prt-box-3 textarea {
+                        margin: 15px 5px 5px 5px;
+                        width: 90%;
+                    }
+
+                    .prt-box-3 h4 {
+                        font-size: 12px;
+                        color: #000000;
+                        margin: 0px;
+                        padding: 11px 15px;
+                        font-weight: bold;
+                        border-bottom: 1px solid #4095EF;
+                    }
+
+                    .prt-box-2 p, .prt-box-3 p {
+                        font-size: 12px;
+                        color: #000;
+                        margin: 0px;
+                        padding: 15px;
+                        font-weight: 400;
+                    }
+
+                .main-frehgt-chrg {
+                    border: 2px solid #4095EF;
+                    border-radius: 15px;
+                    font-size: 0px;
+                    margin-top: 15px;
+                }
+
+                .chgr-lst ul {
+                    margin: 0px;
+                    list-style: none;
+                    font-size: 0px;
+                }
+
+                    .chgr-lst ul li {
+                        display: inline-block;
+                        width: 132px;
+                        padding: 7px 0px 7px 10px;
+                        margin-right: 11px;
+                        border-right: 1px solid #4095EF;
+                        height: 80px;
+                    }
+                        /*.chgr-lst ul li:first-child{
+              border-right: none;
+            }*/
+                        .chgr-lst ul li:last-child {
+                            margin-right: 0px;
+                            border-right: none;
+                            width: 260px;
+                        }
+
+                        .chgr-lst ul li:nth-child(5) {
+                            width: 117px;
+                        }
+
+                        .chgr-lst ul li:nth-child(6) {
+                            width: 120px;
+                        }
+
+                        .chgr-lst ul li p {
+                            font-size: 11px;
+                            font-weight: bold;
+                            color: #000000;
+                            margin: 0px;
+                            padding-bottom: 6.8px;
+                        }
+
+                        .chgr-lst ul li input {
+                            width: 90%;
+                        }
+
+                .chgr-lst.crgh.mnht ul li {
+                    padding-right: 10px;
+                }
+
+                    .chgr-lst.crgh.mnht ul li p {
+                        font-size: 9px;
+                    }
+
+                    .chgr-lst.crgh.mnht ul li:first-child {
+                        width: 374px;
+                    }
+
+                    .chgr-lst.crgh.mnht ul li:nth-child(2) {
+                        width: 187px;
+                    }
+
+                    .chgr-lst.crgh.mnht ul li:first-child p {
+                    }
+
+                .crgh-nme {
+                }
+
+                    .crgh-nme ul {
+                        margin: 0px;
+                        list-style: none;
+                        font-size: 0px;
+                    }
+
+                        .crgh-nme ul li {
+                            display: inline-block;
+                            width: 187px;
+                            padding: 7px 12px 7px 12px;
+                            /*margin-right: 11px;*/
+                            border-right: 1px solid #4095EF;
+                            border-top: 1px solid #4095EF;
+                            border-bottom: 1px solid #4095EF;
+                            vertical-align: top;
+                            height: 100px;
+                        }
+
+                    .crgh-nme textarea {
+                        height: 60px;
+                    }
+
+                .crgh ul li:first-child {
+                    width: 410px;
+                    border-right: 1px solid #4095EF;
+                }
+
+                .crgh-nme ul li:last-child {
+                    margin-right: 0px;
+                    border-right: none;
+                    width: 260px;
+                }
+
+                .crgh-nme ul li p {
+                    font-size: 11px;
+                    font-weight: bold;
+                    color: #000000;
+                    margin: 0px;
+                    padding-bottom: 6.8px;
+                }
+
+                .crgh ul li {
+                    width: 259px;
+                    margin-right: 0px;
+                    vertical-align: top;
+                }
+
+                    .crgh ul li:first-child {
+                    }
+
+                .mnht.crgh ul li {
+                    height: 65px;
+                }
+
+                .chgr-lst.crgh.mnht ul li textarea {
+                    height: 33px;
+                    padding: 8px 10px 8px 10px;
+                }
+
+                .daof ul li {
+                    width: 273.5px;
+                    margin-right: 0px;
+                    border-top: 1px solid #4095EF;
+                    border-bottom: 1px solid #4095EF;
+                    padding-right: 10px;
+                    min-height: 60px;
+                }
+
+                    .daof ul li input {
+                        width: 100%;
+                    }
+
+                    .daof ul li:first-child {
+                        border-right: 1px solid #4095EF;
+                        width: 374px;
+                    }
+
+                    .daof ul li:nth-child(2) {
+                        width: 187px;
+                    }
+
+                    .daof ul li:nth-child(3) {
+                        width: 260px;
+                    }
+
+                    .daof ul li p {
+                        font-size: 9px;
+                    }
+
+                .main-sign {
+                    font-size: 0px;
+                    padding: 20px 40px 15px 15px;
+                }
+
+                .sign-1 {
+                    display: inline-block;
+                    width: 70%;
+                    vertical-align: top;
+                }
+
+                    .sign-1 p {
+                        font-size: 11px;
+                        font-weight: 500;
+                        color: #000000;
+                        margin: 0px;
+                    }
+
+                .sign-2 {
+                    display: inline-block;
+                    width: 30%;
+                    vertical-align: top;
+                    text-align: center;
+                }
+
+                    .sign-2 p {
+                        font-size: 11px;
+                        font-weight: 500;
+                        color: #000000;
+                        margin: 0px;
+                        padding-bottom: 10px;
+                    }
+
+                    .sign-2 img {
+                        border-bottom: 1px solid #4095EF;
+                        padding: 0 40px 10px 40px;
+                        width: 200px;
+                    }
+
+                    .sign-2 span {
+                        font-size: 11px;
+                        font-weight: 500;
+                        color: #000000;
+                        margin: 0px;
+                        padding-top: 6px;
+                        display: block;
+                    }
+
+                .pgurl {
+                    float: left;
+                    padding: 7px 0px;
+                }
+
+                    .pgurl a, .pgurl a:hover {
+                        color: #000;
+                        text-decoration: none;
+                        font-size: 12px;
+                    }
+
+                .pgnm {
+                    float: right;
+                    padding: 11px 0px 9px 0px;
+                    color: #000;
+                    text-decoration: none;
+                    font-size: 12px;
+                }
+
+                .btnpdf {
+                    float: right;
+                    padding: 8px 0px 6px 0px;
+                    background-color: #3c8dbc;
+                    border-color: #367fa9;
+                    border-radius: 3px;
+                    box-shadow: none;
+                    color: #fff;
+                    display: inline-block;
+                    padding: 6px 12px;
+                    margin-bottom: 0;
+                    font-size: 14px;
+                    font-weight: normal;
+                    line-height: 1.42857143;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    touch-action: manipulation;
+                    cursor: pointer;
+                    border: 1px solid transparent;
+                }
+
+                .boldclass {
+                    font-weight: bold;
+                }
+
+                .btnpdf[disabled] {
+                    cursor: not-allowed;
+                    filter: alpha(opacity=65);
+                    box-shadow: none;
+                    opacity: .65;
+                }
+        </style>
+    </head>
+    <body id="myform">
+        <div class="modal fade" id="msgModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#3C8DBC">
+                        <h4 class="modal-title" style="color:white"><b></b></h4>
+                    </div>
+                    <div class="modal-body" id="modalbody">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mwrapper1">
+            <div class="mcontainerr">
+                <div class="main-bor" style="margin-bottom: 10px; color:white; text-align: center; background-color: #4095EF; ">
+
+                    <h2 style="margin:5px;" id="billOfladingTitle">@ViewBag.BL</h2>
+
+                </div>
+                @* Section 1 starts*@
+                <div class="main-bor">
+                    <div>
+                        <div class="flr-left">
+                            <a href="#"><img height="43" src="~/Assets/img/Logo.png" /></a>
+                        </div>
+                        <div class="nftfy-left">
+                            <h5>Shipper</h5>
+                            <div id="Shipper" class="Shipper">
+                                <p id="sName" class="autoCompletePara" contenteditable="true" data-placeholder="Name"></p>
+                                <p id="sAddress" class="autoCompletePara disable" contenteditable="true" data-placeholder="Address"></p>
+                                <p id="sPhone" class="autoCompletePara disable" contenteditable="true" data-placeholder="Phone"></p>
+                                <p id="sEmail" class="autoCompletePara disable" contenteditable="true" data-placeholder="Email"></p>
+                                <input type="hidden" id="sId" />
+                            </div>
+                        </div>
+                        <div class="nftfy-left">
+                            <h5>Consignee</h5>
+                            <div id="Consignee" class="Shipper">
+                                <p id="cName" class="autoCompletePara" contenteditable="true" data-placeholder="Name"></p>
+                                <p id="cAddress" class="autoCompletePara disable" contenteditable="true" data-placeholder="Address"></p>
+                                <p id="cPhone" class="autoCompletePara disable" contenteditable="true" data-placeholder="Phone"></p>
+                                <input type="hidden" id="cId" />
+                            </div>
+                        </div>
+                        <div class="nftfy-left">
+                            <div style="display:flex;align-content:flex-start">
+                                <h5>Notify Party</h5>
+                                <div style="padding-left:100px;">
+                                    <input type="checkbox" checked="@Model.SameAsConsigneeId" value="" onclick="SameAsConsignee()" class="form-check-input" id="SameAsConsigneeId">
+                                    <label style="font-size:10px;padding-left:3px" class="form-check-label" for="SameAsConsigneeId"> Same As Consignee</label>
+                                </div>
+                            </div>
+                            @*<input class="CheckBox" type="checkbox" onclick="" id="SameAsConsignee" /><label for="SameAsConsignee">Same As Consignee</label>*@
+                            <div id="Notifier" class="Shipper">
+                                <p id="nName" class="autoCompletePara" contenteditable="true" data-placeholder="Name"></p>
+                                <p id="nAddress" class="autoCompletePara disable" contenteditable="true" data-placeholder="Address"></p>
+                                <p id="nPhone" class="autoCompletePara disable" contenteditable="true" data-placeholder="Phone"></p>
+                                <input type="hidden" id="nId" />
+                            </div>
+                        </div>
+                        <div class="main-bkng main-bkgng nobrdlft">
+                            <div class="bkng-one" style="border-bottom: 1px solid #4095EF">
+                                <p style="font-weight: bold;">Vessel </p>
+                                <input type="text" id="Vessel">
+                            </div>
+                            <div class="bkng-two" style="border-bottom: 1px solid #4095EF">
+                                <p style="font-weight: bold;">Voyage No.</p>
+                                <input type="text" id="VoyageNo">
+                            </div>
+                            <div class="bkng-three">
+                                <p style="font-weight: bold;">Port of Discharge:</p>
+                                @Html.DropDownList("PortofDischarge", new SelectList((IEnumerable<SelectListItem>)ViewBag.PortTo, "Value", "Text"), new { @class = "form-control select2 selectListSaqib", @tabindex = 4, @id = "PortToId", })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <div class="flr-right">
+                            <div class="main-bkng">
+                                <div class="bkng-one">
+                                    <p>B/L Type:</p>
+                                    @Html.DropDownList("BLTypeId", new SelectList((IEnumerable<SelectListItem>)ViewBag.BLTypeList, "Value", "Text"), new { @class = "form-control", @id = "BLTypeId"})
+                                </div>
+                                <div class="bkng-two nopd">
+                                    <ul>
+                                        <li>
+                                            @if (Model.IsTemplate == true)
+                                            {
+                                                <p>Template No.</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Booking No.</p>
+                                            }
+                                        </li>
+                                        <li>
+                                            <input type="text" id="BookingNo" class="submit_on_enter">
+                                            <input type="hidden" id="BookingId">
+                                        </li>
+                                    </ul>
+                                    <ul style="width:100%;">
+                                        <li style="width:30%"><p>B/L No.</p></li>
+                                        <li style="width:70%; padding-left:0px"><input type="text" id="BLNo" readonly></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cngnee-right">
+                            <div class="main-bkng">
+                                <div class="bkng-one bkngtp">
+                                    <p>Shipment Type:</p>
+                                    @Html.DropDownList("ShipmentTypeId", new SelectList((IEnumerable<SelectListItem>)ViewBag.ShipmentTypeList, "Value", "Text"), new { @class = "form-control", @id = "ShipmentTypeId" })
+                                </div>
+
+                                <div class="bkng-two bkngtp">
+                                    <p>Booking Type:</p>
+                                    @Html.DropDownList("BookingTypeId", new SelectList((IEnumerable<SelectListItem>)ViewBag.BookingTypeList, "Value", "Text", 2), new { @class = "form-control", @id = "BookingTypeId" })
+                                </div>
+                            </div>
+                            <div class="fr-dlv">
+                                <p class="hd">For Delivery of Goods:</p>
+                                <textarea id="DeliveryOfGoods"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="nftfy-right">
+                            <div class="main-nftfy-inner">
+                                <textarea name="" id="commentsArea"></textarea>
+                            </div>
+                            <div class="main-bkng">
+                                <div class="bkng-one">
+                                    <p style="font-weight: bold;">Place of Receipt</p>
+                                    @if (ViewBag.PortFrom != null)
+                                    {
+                                        @Html.DropDownList("PlaceofReceipt", new SelectList((IEnumerable<SelectListItem>)ViewBag.PortFrom, "Value", "Text"), new { @class = "form-control select2", @tabindex = 3, @id = "PlaceOfRecieptId" })
+                                    }
+                                </div>
+                                <div class="bkng-two">
+                                    <p style="font-weight: bold;">Port of Loading:</p>
+                                    @if (ViewBag.PortTo != null)
+                                    {
+                                        @Html.DropDownList("PortofLoading", new SelectList((IEnumerable<SelectListItem>)ViewBag.PortFrom, "Value", "Text"), new { @class = "form-control select2", @tabindex = 2, @id = "PortFromId" })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="main-bkng main-bkgng">
+                            <div class="bkng-three">
+                                <p style="font-weight: bold;">Place of Delivery</p>
+                                @Html.DropDownList("PlaceofDelivery", new SelectList((IEnumerable<SelectListItem>)ViewBag.PortTo, "Value", "Text"), new { @class = "form-control select2", @tabindex = 4, @id = "DeliveryPortId" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* Section 1 ends*@
+
+                @* Section 2 starts*@
+                <div class="main-prt-shp">
+                    <h2>PARTICULARS FURNISHED BY SHIPPER</h2>
+                    <div class="inner-prt-shp">
+                        <div class="prt-box-1">
+                            <h4>Kind of Packages; Description of goods; Marks and Numbers; Container No./Seal No.</h4>
+                            <div>
+                                <div style="width: 793px; height: auto; min-height: 300px; border: 1px solid #4095EF" id="kindDescriptionOfGoods">
+
+                                    <table id='tbhold'>
+                                        <thead>
+                                            <tr style="font-size: 12px; border: 1px solid #4095EF">
+                                                <th width="1%"></th>
+                                                <th width="18%">Container No</th>
+                                                <th width="18%">Seal No</th>
+                                                <th width="10%">No of Containers</th>
+                                                <th width="36%">Description</th>
+                                                <th width="8%" style="border-left: 1px solid #4095EF; border-right: 1px solid #4095EF;">Weight</th>
+                                                <th width="10%">Measurement</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table table-striped">
+                                        </tbody>
+                                        <tr>
+                                            <td style="padding:5px 0px 0px 14px;" colspan="7">
+                                                <button type="button" name="add" id="add" class="btn btn-success">+</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="table table-striped" id="tbdetail">
+                                    </table>
+                                </div>
+                            </div>
+                            <div>
+                                <p>Above particulars as declared by Shipper.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* Section 2 ends*@
+
+            </div>
+
+
+            @* Section 3 start *@
+            <div class="mcontainerr mcontainerr2">
+                <div class="main-frehgt-chrg">
+                    <div class="chgr-lst">
+                        <ul>
+                            <li><p>Freight & Charges</p><input type="number" id="FreightCharges"></li>
+                            <li><p>Rate</p><input type="number" name="" id="Rate"></li>
+                            <li><p>Unit</p><input type="number" name="" id="Unit"></li>
+                            <li style="padding-left:0px;"><p>Currency</p>@Html.DropDownList("Currency", new SelectList((IEnumerable<SelectListItem>)ViewBag.Currency, "Value", "Text"), new { @class = "form-control input-sm select-input", @id = "Currency", @style = "width:117px" })</li>
+                            @*<li><p>Currency</p><input type="number" name="" id="Currency"></li>*@
+                            <li><p>Prepaid</p><input type="text" name="" id="Prepaid"></li>
+                            <li><p>Collect</p><input type="text" name="" id="Collect"></li>
+                        </ul>
+                    </div>
+                    <div class="crgh-nme">
+                        <ul>
+                            <li><p>Charges Name</p><textarea name="" id="ChargesName"></textarea></li>
+                            <li>
+                                <p>Prepaid/Collect</p><textarea name="" id="PrepaidCollect"></textarea>
+                            </li>
+                            <li>
+                                <p>Invoice Party</p><textarea name="" id="InvoiceParty"></textarea>
+                            </li>
+                            <li>
+                                <p>Collection Business Unit</p>
+                                <input type="number" style="height: 60px" name="" id="CollectionBusinessUnit" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="chgr-lst crgh mnht">
+                        <ul>
+                            <li>
+                                <p>
+                                    Total number of containers or packages received by Carrier
+                                </p>
+                                <input type="number" name="" id="NoOfContainersReceived" />
+                            </li>
+                            <li><p>Place of Issue of B/L</p><textarea name="" id="PlaceOfIssue"></textarea></li>
+                            <li>
+                                <p>Number & Sequence of Original B(s)/L</p>
+                                <input type="number" id="NoOfOriginalBLs" />
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="chgr-lst daof">
+                        <ul>
+                            <li>
+                                <p>Date of Issue of B/L</p>                                
+                                 <input type="text" class="Date" id="DateofIssueBLs"  autocomplete="off" />                              
+                            </li>
+                            <li><p>Declared Value</p><input type="text" id="DeclaredValue"></li>
+                            <li>
+                                <p>Shipped on Board Date</p>                                
+                                <input type="text" class="Date" id="ShippedonBoard" autocomplete="off" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="crgh-nme2">
+                        <ul>
+                            <li>
+                                <p>Insured Amount</p><input type="text" name="" id="InsuredAmount">
+                            </li>
+                            <li>
+                                <p>Conditions</p><input type="text" name="" id="Conditions">
+                            </li>
+                            <li>
+                                <p>Open Policy No</p><input type="text" name="" id="OpenPolicyNo">
+                            </li>
+                            <li>
+                                <p>Insured BL</p><input type="text" name="" id="InsuredBl">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="crgh-nme2">
+                        <ul>
+                            <li>
+                                <p>Exchange Rate</p><input type="number" name="" id="ExchangeRate">
+                            </li>
+                            <li>
+                                <p>Prepaid at</p><input type="text" name="" id="PrepaidAt">
+                            </li>
+                            <li>
+                                <p>Payable at</p><input type="text" name="" id="PayableAt">
+                            </li>
+                            <li>
+                                <p>Total prepaid in local currency</p><input type="text" name="" id="TotalPrepaid">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="main-sign">
+                        <div class="sign-1">
+                            <p>This transport document has one or more numbered pages</p>
+                        </div>
+                        <div class="sign-2">
+                            <p>Signed for the Carrier M3LOGI CO., LTD.</p>
+                            <img src="~/Assets/img/signature-image.png" alt="" />
+
+                            <span>As Agent(s)</span>
+                        </div>
+                    </div>
+
+                </div>
+                <table width="100%" class="btnTable">
+                    <tr>
+                        <td style="width:15%"><p class="pgurl"><a href="#">www.m3logi.com</a></p></td>
+                        <td style="width:25%">
+                            <div class="templatecheckbox pull-left">
+                                <input type="checkbox" id="IsTemplate" value="" checked="@Model.IsTemplate" style="display:none;">
+                            </div>
+                        </td>
+                        <td width="30%">
+                            <div class="pull-right" id="btnExcelCancel">
+                                <button class="btn btn-danger" id="btnCancel" onclick="Reset()">Cancel</button>
+                                <button class="btn btn-warning" id="btnExcel" onclick="GenerateExcel();">Generate Excel</button>
+                            </div>
+                        </td>
+                        <td width="30%">
+                            <input type="button" id="btnSave" value="Save" class="btn btn-success" />
+                            <input type="button" id="btnUpdate" value="Update" class="btn btn-primary" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            @* Section 3 ends *@
+
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                        <div class="modal-header" style="background-color: #D73925; color: white">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Warning</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure to delete BL Draft ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-danger" data-dismiss="modal" id="btnDelete">
+                                Yes
+                            </a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </body>
+</html>
+
+
+<script src="~/Assets/js/moment.js"></script>
+<!-- Bootstrap JP date Picker -->
+<link rel="stylesheet" href="~/Assets/plugins/jpyDatePicker/jquery.jpDatePicker.css">
+<script src="~/Assets/plugins/jpyDatePicker/jquery.jpDatePicker.js"></script>
+<script src="~/Assets/js/Helper.js"></script>
+
+
+<script>
+     function Reset() {
+        var isTemplate1 = isTemplate();
+        var useTemplate1 = useTemplate();
+        if (isTemplate1 == "True" && useTemplate1 == "False") {
+            window.location = '@(Url.Action("BillofLadingPrintingTemplate"))';
+        }
+        if (isTemplate1 == "False" && useTemplate1== "False") {
+            window.location = '@(Url.Action("BillOfLadingPrinting"))';
+        }
+    }
+
+    $(document).ready(function () {
+        $(".Date").jpDatePicker({
+            autoclose: true,
+            format: "YYYY-MM-DD",
+            default: '',
+        });
+        $('#DateofIssueBLsCancel').on('click', function () {
+            $('#DateofIssueBLs').val("");
+
+        });
+        var BookingNumber = '@Model.BookingNo';
+        var UseTemplate = '@Model.UseTemplate';
+        $("#BookingNo").val(BookingNumber);
+        if ((BookingNumber != null && BookingNumber != "") && UseTemplate == 'False') {
+            GetBookingDetail();
+            $("#btnUpdate").show();
+            $("#btnExcel").show();
+            $("#btnCancel").show();
+        }
+        else if ((BookingNumber != null && BookingNumber != "") && UseTemplate == 'True') {
+            GetBookingDetail();
+        }
+
+        $("#btnUpdate").hide();
+        $("#btnExcel").hide();
+        $("#btnCancel").hide();
+        if (useTemplate() == 'True') {
+            $("#BookingNo").val('');
+        }
+        else  (isTemplate() == 'False' && useTemplate() == 'False')
+        {
+            if ($("#BookingNo").val() != "")
+            {
+                $("#BookingNo").val('@Model.BookingNo');
+                $("#BookingNo").addClass('disable');
+            }
+        }
+
+    });
+    function useTemplate() {
+        var UseTemplate = '@Model.UseTemplate';
+        return UseTemplate;
+    }
+    function isTemplate() {
+        var IsTemplate = '@Model.IsTemplate';
+        return IsTemplate;
+    }
+
+    //Dynamic TextBoxStart
+    //Add input field
+    var i = 0;
+    $("#add").click(function (e) {
+        i++;
+        e.preventDefault();
+        $("#tbhold").append('<tr style="" class="row' + i + '"><td><div class="tb"><input type="hidden" id="tb' + i + '" name="DetailId' + i + '"  class="tb DetailId" /></div></td><td><div class="tb"><input type="text" id="tb' + i + '" name="ContainerNo' + i + '"  class="tb ContainerNo" /></div></td><td><div class="tb"><input type="text" name="SealNo' + i + '"  class="form-control tb SealNo" /></div></td><td><div class="tb"><input type="number" name="NoOfContainers' + i + '"  class="form-control tb NoOfContainers" /></div></td><td><div class="tb"><textarea style="padding:1px;" name="Description' + i + '"  class="tb Description" placeholder="Description"></textarea></div></td><td style="border-left: 1px solid #4095EF; border-right: 1px solid #4095EF;"><div class="tb"><input type="number" name="GrossWeight' + i + '"  class="form-control tb GrossWeight" /></div></td><td><div class="tb"><input type="number" name="Measurement' + i + '"  class="form-control tb Measurement" /></div></td><td><button type="button" style="height:20px;width:20px;padding:0px" class="btn btn-danger btn_remove" id="' + i + '" name="remove">X</button></td></tr>');
+    });
+
+    //Remove input field
+    $(document).on('click', '.btn_remove', function () {
+        var button_id = $(this).attr("id");
+        $(".row" + button_id).each(function () {
+            $(this).remove();
+        });
+
+    });
+
+    //Delete Details row
+    $(document).on('click', '.btn_delete', function () {
+
+        var detailId = $(this).attr("id");
+        let confirmation=confirm("Are you sure to delete?");
+        if (confirmation) {
+            $.ajax({
+                url: "DeleteBillofLadingPrintingDetail",
+                type: "Post",
+                data: { detailId: detailId, },
+                success: function (data) {
+                    if (data == true) {
+                        $(".row" + detailId).each(function () {
+                            $(this).remove();
+                        });
+                    }
+                    else
+                        Helper.Methods.ShowPopUp('Error', 'Some Error Occur');
+                },
+                error: function () {
+
+                    Helper.Methods.ShowPopUp('Error', 'Some Error Occur');
+                }
+            });
+        }
+
+    });
+
+
+
+    var validation = true;
+
+    $('#btnSave').click(function () {
+        validation = true;
+        $(".error").removeClass("error");
+        var list = [];
+        list = GetVariableDetailList();
+        var gbooking = {};
+        gbooking = GetData();
+        if (validation == true) {
+            $.ajax({
+                async: true,
+                type: 'post',
+                cache: false,
+                data: { requestModel: JSON.stringify(gbooking), requestModelDetails: JSON.stringify(list) },
+                url: "InsertBillofLadingPrinting",
+            crossDomain: true,
+            success: function (data) {
+                if (data.result == true && data.IsTemplate == false) {
+                    Helper.Methods.ShowPopUp('Success', 'Successfully Created!');
+                    setTimeout(function () {
+                        window.location = '@(Url.Action("BillofLadingPrinting"))';
+                    }, 3000)
+                    }
+                else if (data.result == true && data.IsTemplate == true) {
+                    Helper.Methods.ShowPopUp('Success', 'Successfully Created!');
+                       setTimeout(function () {
+                          window.location = '@(Url.Action("BillofLadingPrintingTemplate"))';
+                       }, 3000);
+                    }
+                else {
+                    Helper.Methods.ShowPopUp('Error', 'Insert Failed! It seems booking number already exists');
+                    }
+            },
+            error: function (error) {
+                Helper.Methods.ShowPopUp('Error', 'Some Error Occur');
+            }
+        });
+        }
+    });
+
+    $('#btnUpdate').click(function () {
+        $(".error").removeClass("error");
+        var list = [];
+        list = GetVariableDetailList();
+        var gbooking = GetData();
+
+        if (validation == true) {
+            $.ajax({
+                url: "UpdateBillofLadingPrinting",
+                type: "Post",
+                data: { requestModel: JSON.stringify(gbooking), requestModelDetails: JSON.stringify(list) },
+                success: function (data) {
+                    if (data.result) {
+                        if (data.IsTemplate == false) {
+                            Helper.Methods.ShowPopUp('Success', 'Successfully updated!');
+                            setTimeout(function () {
+                                window.location = '@(Url.Action("BillofLadingPrinting"))';
+                            }, 3000);
+                        }
+                        else if (data.IsTemplate == true) {
+                            Helper.Methods.ShowPopUp('Success', 'Successfully updated!');
+                            setTimeout(function () {
+                                window.location = '@(Url.Action("BillofLadingPrintingTemplate"))';
+                            }, 3000);
+                        }
+                        else {
+                            Helper.Methods.ShowPopUp('Error', 'Update Failed! It seems booking number already exists');
+
+                        }
+                    }
+                    else {
+                        Helper.Methods.ShowPopUp('Error', 'Some Error Occur');
+                    }
+
+                },
+                error: function (error) {
+                    Helper.Methods.ShowPopUp('Error', 'Some Error Occur');
+                }
+            });
+        }
+    });
+
+    $('.datePicker').datepicker({
+        autoclose: true,
+        orientation: false
+    });
+
+    $('#BookingNo').keypress(function (event) {
+
+        if (event.keyCode == '13')
+        {
+            GetBookingDetail();
+
+            }
+    });
+    function GetBookingDetail() {
+
+        $(".error").removeClass("error");
+        SelectedBookingNo = $("#BookingNo").val();
+
+        $('#tbdetail').each(function () {
+            $(this).html('');
+        });
+        $.ajax({
+            url: "/Catalog/GetBillofLadingPrinting",
+            type: "POST",
+            data: { BookingNumber: SelectedBookingNo },
+            success: function (data) {
+
+                if (data) {
+                    if (useTemplate() == 'False') {
+                        $("#btnUpdate").show();
+                        $("#btnSave").hide();
+                        $("#btnExcel").show();
+                        $("#btnCancel").show();
+                        $("#billOfladingTitle").html("Update BL/Template");
+                    }
+                    else {
+                        $("#btnUpdate").hide();
+                        $("#btnSave").show();
+                        $("#btnExcel").show();
+                        $("#btnCancel").hide();
+                    }
+                    populateData(data);
+                }
+                else {
+                    $("#btnUpdate").hide();
+                    $("#btnSave").show();
+                    $("#btnExcel").hide();
+                    $("#btnCancel").hide();
+                }
+
+            },
+            error: function (error) {
+                Helper.Methods.ShowPopUp('Error', 'Some Error occur!');
+
+            },
+        });
+    }
+    function populateData(data) {
+        $("#BookingId").val(data.Id);
+        $("#PlaceOfRecieptId").val(data.PlaceOfRecieptId);
+        $("#PortFromId").val(data.PortFromId);
+        $("#PortToId").val(data.PortToId);
+        $("#DeliveryPortId").val(data.DeliveryPortId);
+        $("#DestinationId").val(data.DestinationId);
+        $("#BLTypeId").val(data.BLTypeId);
+        $("#ShipmentTypeId").val(data.ShipmentTypeId);
+        $("#BookingTypeId").val(data.BookingTypeId);
+        $("#DeliveryOfGoods").val(data.DeliveryOfGoods);
+        $("#commentsArea").val(data.commentsArea);
+        $("#Vessel").val(data.Vessel);
+        $("#VoyageNo").val(data.VoyageNo);
+        //shipper
+        $("#sId").val(data.ShipperId);
+        $("#sName").html(data.ShipperName);
+        $("#sAddress").html(data.ShipperAddressLine1);
+        $("#sPhone").html(data.ShipperTelephone);
+        $("#sEmail").html(data.ShipperEmail);
+        //consignee
+        $("#cId").val(data.ConsigneeId);
+        $("#cName").html(data.ConsigneeName);
+        $("#cAddress").html(data.ConsigneeAddressLine1);
+        $("#cPhone").html(data.ConsigneeTelephone);
+        //notifier
+        $("#nId").val(data.NotifyPartyId);
+        $("#nName").html(data.NotifierName);
+        $("#nAddress").html(data.NotifierAddressLine1);
+        $("#nPhone").html(data.NotifierTelephone);
+
+
+        var useTemplate1 = useTemplate();
+        if (useTemplate1 == 'False') {
+            //details
+            $.each(data.BillofLadingPrintingDetailList, function (i) {
+
+               // $("#tbhold").append("<tr class='row" + data.BillofLadingPrintingDetailList[i].DetailId + "'><td width='18%'><p >" + data.BillofLadingPrintingDetailList[i].ContainerNo + "</p></td><td width='18%'><p>" + data.BillofLadingPrintingDetailList[i].SealNo + "</p></td><td width='10%'><p>" + data.BillofLadingPrintingDetailList[i].NoOfContainers + "</p></td><td width='36%'><p>" + data.BillofLadingPrintingDetailList[i].Description + "</p></td><td width='8%'><p>" + data.BillofLadingPrintingDetailList[i].GrossWeight + "</p></td><td width='10%'><p>" + data.BillofLadingPrintingDetailList[i].Measurement + "</p></td><td><button type=''button' style='height:20px;width:20px;padding:0px' class='btn btn-danger btn_delete' id='" + data.BillofLadingPrintingDetailList[i].DetailId + "' name='remove'>X</button></td><tr>");
+                $("#tbhold").append("<tr class='row" + i + `"'>`
+                   + `<td> <div class='tb'><input type='hidden' value='`+ data.BillofLadingPrintingDetailList[i].DetailId + `' id='tb'" + i + "' name='DetailId'" + i + "'  class='tb DetailId' /></div></td >`
+                   + `<td><div class='tb'><input type='text' value='`+ data.BillofLadingPrintingDetailList[i].ContainerNo +`' id='tb'" + i + "' name='ContainerNo'" + i + "'  class='tb ContainerNo' /></div></td>`
+                   + `<td><div class='tb'><input type='text' name='SealNo'`+ i + `' value='`+ data.BillofLadingPrintingDetailList[i].SealNo +`'  class='form - control tb SealNo' /></div></td>`
+                    + `<td><div class='tb'><input type='number' name='NoOfContainers'` + i + `' value='` + data.BillofLadingPrintingDetailList[i].NoOfContainers + `' class='form - control tb NoOfContainers' /></div></td>`
+                    + `<td><div class='tb'><textarea  type='text' style='padding: 1px; font-size:10px resize:none' name='Description'" ` + i +`"' class='tb Description' placeholder='Description'>` + data.BillofLadingPrintingDetailList[i].Description + `</textarea></div></td >`
+                    + `<td style='border - left: 1px solid #4095EF; border - right: 1px solid #4095EF; '><div class='tb'><input type='number' name='GrossWeight'` + i + `' value='` + data.BillofLadingPrintingDetailList[i].GrossWeight + `'  class='form - control tb GrossWeight' /></div></td>`
+                    + `<td><div class='tb'><input type='number' name='Measurement'` + i + `' value='` + data.BillofLadingPrintingDetailList[i].Measurement + `'   class='form - control tb Measurement' /></div></td>`
+                     +`<td><button type='button' style='height: 20px; width: 20px; padding: 0px' class='btn btn-danger btn_delete' id='` + data.BillofLadingPrintingDetailList[i].DetailId + `' name='remove'>X</button></td></tr > "`);
+
+            });
+        }
+        $("#Rate").val(data.Rate);
+        $("#FreightCharges").val(data.FreightCharges);
+        $("#Unit").val(data.Unit);
+        $("#Currency").val(data.Currency);
+        $("#Prepaid").val(data.Prepaid);
+        $("#Collect").val(data.Collect);
+        $("#ChargesName").val(data.ChargesName);
+        $("#PrepaidCollect").val(data.PrepaidCollect);
+        $("#InvoiceParty").val(data.InvoiceParty);
+        $("#CollectionBusinessUnit").val(data.CollectionBusinessUnit);
+        $("#NoOfContainersReceived").val(data.NoOfContainersReceived);
+        $("#PlaceOfIssue").val(data.PlaceOfIssue);
+        $("#NoOfOriginalBLs").val(data.NoOfOriginalBLs);
+        $("#DeclaredValue").val(data.DeclaredValue);
+        if (data.DateofIssueBLs != null) {
+            var dateOfIssue = new Date(data.DateofIssueBLs); $("#DateofIssueBLs").val(dateOfIssue.toLocaleDateString("sv"));
+        } else { $("#DateofIssueBLs").val(''); }
+        if (data.ShippedonBoard != null) { var dateShippedonBoard = new Date(data.ShippedonBoard); $("#ShippedonBoard").val(dateShippedonBoard.toLocaleDateString("sv")); } else { $("#ShippedonBoard").val(''); }
+        $("#InsuredAmount").val(data.InsuredAmount);
+        $("#Conditions").val(data.Conditions);
+        $("#OpenPolicyNo").val(data.OpenPolicyNo);
+        $("#InsuredBl").val(data.InsuredBl);
+        $("#ExchangeRate").val(data.ExchangeRate);
+        $("#PrepaidAt").val(data.PrepaidAt);
+        $("#PayableAt").val(data.PayableAt);
+        $("#TotalPrepaid").val(data.TotalPrepaid);
+      
+        if (data.SameAsConsigneeId == true) {
+            $("#SameAsConsigneeId").attr('checked', true);
+        }
+        else if (SameAsConsigneeId == false) {
+            $("#SameAsConsigneeId").attr('checked', false);
+        }
+        if (useTemplate() == 'True') { BlNumber($('#sName').text()); }
+        if (useTemplate() != 'True') { $("#BLNo").val(data.BLNo); }
+        SameAsConsignee();
+
+    }
+
+    $('#sName').keyup(function () {
+        if ($('#sName').html() == '') {
+            clearShipper();
+        }
+    });
+    function clearShipper() {
+        $("#sName").html("");
+        $("#sAddress").html("");
+        $("#sPhone").html("");
+        $("#sEmail").html("");
+        $("#sId").val("");
+    }
+    $("#sName").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: 'GetShipperConsigneeNotifierNames',
+                type: "POST",
+                dataType: "json",
+                data: { SearchedName: request.term, TypeId:3 },
+                success: function (data) {
+                    response($.map(data.ShipperList, function (item) {
+                        return { label: item.ShipperName, value: item.ShipperName, id: item.ShipperId, address: item.Address, phone: item.Contact, email: item.Email, };
+                    }));
+                },
+                error: function (error) {
+                    Helper.Methods.ShowPopUp('Error', 'Some Error Occur');
+                }
+            })
+        },
+        select: function (event, ui) {
+            SelectedShipperId = ui.item.id;
+            SetValues(ui, 's');
+            BlNumber(ui.item.value);
+        },
+    });
+
+    $('#cName').keyup(function () {
+        if ($('#cName').html() == '') {
+            clearConsignee();
+        }
+    });
+    function clearConsignee() {
+        $("#cName").html("");
+        $("#cAddress").html("");
+        $("#cPhone").html("");
+        $("#cEmail").html("");
+        $("#cId").val("");
+    }
+    $("#cName").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: 'GetShipperConsigneeNotifierNames',
+                type: "POST",
+                dataType: "json",
+                data: { SearchedName: request.term, TypeId: 1 },
+                success: function (data) {
+                    response($.map(data.ShipperList, function (item) {
+                        return { label: item.ShipperName, value: item.ShipperName, id: item.ShipperId, address: item.Address, phone: item.Contact, email: item.Email, };
+                    }));
+                },
+                error: function (error) { Helper.Methods.ShowPopUp('Error', 'Some Error Occur'); }
+            })
+        },
+        select: function (event, ui) {
+
+            SelectedShipperId = ui.item.idC;
+            SetValues(ui, 'c');
+
+        },
+
+    });
+
+    $('#nName').keyup(function () {
+        if ($('#nName').html() == '') {
+            clearNotifier();
+        }
+    });
+    function clearNotifier() {
+        $("#nName").html("");
+        $("#nAddress").html("");
+        $("#nPhone").html("");
+        $("#nEmail").html("");
+        $("#nId").val("");
+    }
+    $("#nName").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: 'GetShipperConsigneeNotifierNames',
+                type: "POST",
+                dataType: "json",
+                data: { SearchedName: request.term, TypeId: 2 },
+                success: function (data) {
+                    response($.map(data.ShipperList, function (item) {
+                        return { label: item.ShipperName, value: item.ShipperName, id: item.ShipperId, address: item.Address, phone: item.Contact, email: item.Email, };
+                    }));
+                },
+                error: function (error) { Helper.Methods.ShowPopUp('Error', 'Some Error Occur'); }
+            })
+        },
+        select: function (event, ui) {
+            SelectedShipperId = ui.item.idC;
+            SetValues(ui, 'n');
+        },
+
+    });
+    function SetValues(values, scn) {
+        $("#" + scn + "Name").html(values.item.value);
+        $("#" + scn + "Address").html(values.item.address);
+        $("#" + scn + "Phone").html(values.item.phone);
+        $("#" + scn + "Email").html(values.item.email);
+        $("#" + scn + "Id").val(values.item.id);
+    }
+
+
+    function GenerateExcel() {
+        $(".error").removeClass("error");
+        var list = [];
+        list = GetVariableDetailList();
+        var gbooking = GetData();
+        var bookingNo = $.trim($("#BookingNo").val());
+        if (bookingNo == "") {
+            Helper.Methods.ShowPopUp('Information', 'Please enter Booking Number');
+            $('#BookingNo').addClass('error');
+        }
+        else {
+            $.ajax({
+                method: "POST",
+                url: "GenerateBillofLadingPrintingExcel",
+                data: { BookingNumber: "", requestModel: JSON.stringify(gbooking), requestModelDetails: JSON.stringify(list) },
+                success: function (data) {
+                    window.open('/Catalog//Download?fileGuid=' + data.FileGuid
+                        + '&filename=' + data.FileName, '_blank');
+                },
+                error: function (error) {
+                    Helper.Methods.ShowPopUp('Error', 'Some Error Occur');
+                },
+            });
+        }
+    }
+
+
+    $('#genBLPDF').on('click', function () {
+
+        var data=$('html')[0].outerHTML;
+
+        $.ajax({
+            dataType: "html",
+            async: true,
+            type: 'POST',
+            cache: false,
+            url: '@Url.Action("BLPDF")',
+            data: {data:JSON.stringify(data)},
+            success: function (data) {
+
+                if(data == "Error"){
+                }
+                else{
+                    window.open(JSON.parse(data).Pdf, "_blank");
+                }
+            },
+        });
+    })
+
+    function ScrollFocus() {
+        $('html,body').animate({
+            scrollTop: ($('.error').offset().top - 300)
+        }, 500);
+    }
+
+    function GetData() {
+        isValid = true;
+        var data = {};
+        if ($("#BookingId").val() == null) {
+            data.Id = 0;
+        }
+        else {
+            data.Id = $("#BookingId").val();
+        }
+        data.BookingNo = $("#BookingNo").val();
+        data.PlaceOfRecieptId = $("#PlaceOfRecieptId").val();
+        data.PortFromId = $("#PortFromId").val();
+        data.PortToId = $("#PortToId").val();
+        data.DeliveryPortId = $("#DeliveryPortId").val();
+
+        //Region Start only usse for excel generate from Update or Use BlTemplates
+        if (data.PlaceOfRecieptId == 0) { data.ReceiptPlace == '--'; } else { data.ReceiptPlace = $("#PlaceOfRecieptId option:selected").text(); }
+        if (data.PortFromId == 0) { data.LandingPort = '--'; } else { data.LandingPort = $("#PortFromId option:selected").text(); }
+        if (data.PortToId == 0) { data.DischargePort = '--'; } else { data.DischargePort = $("#PortofDischarge option:selected").text(); }
+        if (data.DeliveryPortId == 0) { data.DeliveryPort = '--'; } else { data.DeliveryPort = $("#DeliveryPortId option:selected").text(); }
+        //Region End
+
+        data.DestinationId = $("#DestinationId").val();
+        data.BLTypeId = $("#BLTypeId").val();
+        data.BLNo = $("#BLNo").val();
+        data.ShipmentTypeId = $("#ShipmentTypeId").val();
+        data.BookingTypeId = $("#BookingTypeId").val();
+        data.DeliveryOfGoods = $("#DeliveryOfGoods").val();
+        data.commentsArea = $("#commentsArea").val();
+        data.dDestinationId = $("#dDestinationId").val();
+        data.Vessel = $("#Vessel").val();
+        data.VoyageNo = $("#VoyageNo").val();
+        data.ShipperName = $("#sName").text();
+        data.ShipperAddressLine1 = $("#sAddress").text();
+         data.ShipperTelephone = $("#sPhone").text();
+        data.ShipperEmail = $("#sEmail").text();
+        data.ConsigneeName = $("#cName").text();
+         data.ConsigneeAddressLine1 = $("#cAddress").text();
+         data.ConsigneeTelephone = $("#cPhone").text();
+         data.NotifierName = $("#nName").text();
+         data.NotifierAddressLine1 = $("#nAddress").text();
+        data.NotifierTelephone = $("#nPhone").text();
+
+        data.ShipperId = $("#sId").val();
+        data.ConsigneeId = $("#cId").val();
+        data.NotifyPartyId = $("#nId").val();
+
+        data.Rate = $("#Rate").val();
+        data.FreightCharges = $("#FreightCharges").val();
+        data.Unit = $("#Unit").val();
+        data.Currency = $("#Currency").val();
+        data.Prepaid = $("#Prepaid").val();
+        data.Collect = $("#Collect").val();
+        data.ChargesName = $("#ChargesName").val();
+        data.PrepaidCollect = $("#PrepaidCollect").val();
+        data.InvoiceParty = $("#InvoiceParty").val();
+        data.CollectionBusinessUnit = $("#CollectionBusinessUnit").val();
+        data.NoOfContainersReceived = $("#NoOfContainersReceived").val();
+        data.PlaceOfIssue = $("#PlaceOfIssue").val();
+        data.NoOfOriginalBLs = $("#NoOfOriginalBLs").val();
+        data.DateofIssueBLs = $("#DateofIssueBLs").val();
+        data.DeclaredValue = $("#DeclaredValue").val();
+        data.ShippedonBoard = $("#ShippedonBoard").val();
+
+        data.InsuredAmount = $("#InsuredAmount").val();
+        data.Conditions = $("#Conditions").val();
+        data.OpenPolicyNo = $("#OpenPolicyNo").val();
+        data.InsuredBl = $("#InsuredBl").val();
+        data.ExchangeRate = $("#ExchangeRate").val();
+        data.PrepaidAt = $("#PrepaidAt").val();
+        data.PayableAt = $("#PayableAt").val();
+        data.TotalPrepaid = $("#TotalPrepaid").val();
+        if ($('#IsTemplate').is(":checked")) {
+            data.IsTemplate = true;
+        }
+        else {
+            data.IsTemplate = false;
+        }
+        if ($('#SameAsConsigneeId').is(":checked")) {
+            data.SameAsConsigneeId = true;
+            data.NotifyPartyId = null;
+        }
+        else {
+            data.SameAsConsigneeId = false;
+        }
+        //if (data.BookingId == "") {
+        //    $('#BookingId').addClass('error');
+        //    validation = false;
+        //}
+
+        var trimValue = $.trim(data.BookingNo);
+        if (trimValue == "")
+        {
+            $('#BookingNo').addClass('error');
+            ScrollFocus();
+            validation = false;
+        }
+        //if (data.PlaceOfRecieptId == "0" || data.PlaceOfRecieptId==0) {
+        //    $('#PlaceOfRecieptId').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.PortFromId == "0" || data.PortFromId==0) {
+        //    $('#PortFromId').addClass('error');
+        //    validation = false;
+        //}
+
+        //if (data.PortToId == "0" || data.PortToId == 0) {
+        //    $('#PortofDischargeId').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.DeliveryPortId == "0" || data.DeliveryPortId==0) {
+        //    $('#DeliveryPortId').addClass('error');
+        //    validation = false;
+        //}
+
+        //if (data.DestinationId == 0) {
+        //    $('#DestinationId').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.BLTypeId == 0) {
+        //    $('#BLTypeId').addClass('error');
+        //    validation = false;
+        //}
+        if (data.BLNo == 0) {
+            $('#BLNo').addClass('error');
+            ScrollFocus();
+            validation = false;
+        }
+        //if (data.ShipmentTypeId == 0) {
+        //    $('#ShipmentTypeId').addClass('error');
+        //    validation = false;
+        //}
+
+        //if (data.BookingTypeId == 0) {
+        //    $('#BookingTypeId').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.DeliveryOfGoods == "") {
+        //    $('#DeliveryOfGoods').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.commentsArea == "") {
+        //    $('#commentsArea').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.Vessel == "") {
+        //    $('#Vessel').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.VoyageNo == "") {
+        //    $('#VoyageNo').addClass('error');
+        //    validation = false;
+        //}
+        if (data.ShipperName == "") {
+            $('#sName').addClass('error');
+            ScrollFocus();
+            validation = false;
+        }
+        //if (data.ShipperAddressLine1== "") {
+        //    $('#sAddress').addClass('error');
+        //    ScrollFocus();
+        //    validation = false;
+        //}
+        //if (data.ShipperEmail == "") {
+        //    $('#sEmail').addClass('error');
+        //    ScrollFocus();
+        //    validation = false;
+        //}
+        //if ( data.ShipperTelephone == "") {
+        //    $('#sPhone').addClass('error');
+        //    validation = false;
+        //}
+        if (data.ConsigneeName == "") {
+            $('#cName').addClass('error');
+            ScrollFocus();
+           validation = false;
+        }
+        //if ( data.ConsigneeAddressLine1 == "") {
+        //    $('#cAddress').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.cEmail == "") {
+        //    $('#cEmail').addClass('error');
+        //    validation = false;
+        //}
+        //if ( data.ConsigneeTelephone == "") {
+        //    $('#cPhone').addClass('error');
+        //    validation = false;
+        //}
+        //if ( data.NotifierName == "") {
+        //    $('#nName').addClass('error');
+        //    validation = false;
+        //}
+        //if ( data.NotifierAddressLine1 == "") {
+        //    $('#nAddress').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.nEmail == "") {
+        //    $('#nEmail').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.NotifierTelephone == "") {
+        //    $('#nPhone').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.Rate == "") {
+        //    $('#Rate').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.FreightCharges == "") {
+        //    $('#FreightCharges').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.Unit == "") {
+        //    $('#Unit').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.Currency == "") {
+        //    $('#Currency').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.Prepaid == "") {
+        //    $('#Prepaid').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.Collect == "") {
+        //    $('#Collect').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.ChargesName == "") {
+        //    $('#ChargesName').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.PrepaidCollect == "") {
+        //    $('#PrepaidCollect').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.InvoiceParty == "") {
+        //    $('#InvoiceParty').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.CollectionBusinessUnit == "") {
+        //    $('#CollectionBusinessUnit').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.NoOfContainersReceived == "") {
+        //    $('#NoOfContainersReceived').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.PlaceOfIssue == "") {
+        //    $('#PlaceOfIssue').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.NoOfOriginalBLs == "") {
+        //    $('#NoOfOriginalBLs').addClass('error');
+        //    validation = false;
+        //}
+        var isTemplate1 = isTemplate();
+        var useTemplate1 = useTemplate();
+        if ((isTemplate1 == "False" && useTemplate1 == "False") || (isTemplate1 == "False" && useTemplate1== "True")) {
+            if (data.DateofIssueBLs == "") {
+                $('#DateofIssueBLs').addClass('error');
+                ScrollFocus();
+                validation = false;
+            }
+            if (data.ShippedonBoard == "") {
+                $('#ShippedonBoard').addClass('error');
+                ScrollFocus();
+                validation = false;
+            }
+        }
+
+        //if (data.DeclaredValue == "") {
+        //    $('#DeclaredValue').addClass('error');
+        //    validation = false;
+        //}
+
+        //if (data.InsuredAmount == "") {
+        //    $('#InsuredAmount').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.Conditions == "") {
+        //    $('#Conditions').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.OpenPolicyNo == "") {
+        //    $('#OpenPolicyNo').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.InsuredBl == "") {
+        //    $('#InsuredBl').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.ExchangeRate == "") {
+        //    $('#ExchangeRate').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.PrepaidAt == "") {
+        //    $('#PrepaidAt').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.PayableAt == "") {
+        //    $('#PayableAt').addClass('error');
+        //    validation = false;
+        //}
+        //if (data.TotalPrepaid == "") {
+        //    $('#TotalPrepaid').addClass('error');
+        //    validation = false;
+        //}
+
+        return data;
+    }
+
+    $("#PortToId").change(function () {
+
+        BlNumber($('#sName').text());
+    });
+    //$("#PortFromId, #DeliveryPortId").change(function () {
+
+    //    BlNumber($('#sName').text());
+    //});
+
+    function RandomNumber() {
+        var ran = Math.floor(Math.random() * 999) + 100;
+        ran = ran.toString();
+        var r = ran.substring(0, 3);
+        return r;
+    }
+    function BlNumber(ShipperName)
+    {
+        var PortofDischarge = $("#PortToId option:selected").text();
+        PortofDischarge = $("#PortToId").val() != 0 ? PortofDischarge = PortofDischarge.slice(0, 3) : PortofDischarge = "";
+        ShipperName = ShipperName != null ? ShipperName = ShipperName.slice(0, 3) : ShipperName = "";
+        var date = moment().format('DD-MM');
+        date = date.replace("-", "");
+        var RandomNo = RandomNumber();
+        var blno = "M3" + PortofDischarge + ShipperName + date + RandomNo;
+        blno=blno.toUpperCase();
+        $("#BLNo").val(blno);
+    }
+
+
+    function UniqueDateTime() {
+        let currentTime = Date();
+        var time = currentTime.toString();
+        time = time.replace(/\s/g, '');
+        var t = time;
+        t = t.replace(/[^a-zA-Z0-9 ]/g, "");
+        var a = t.slice(6, 18);
+        var split1 = a.substring(0, 2);
+        var split2 = a.substring(4);
+        let currentMonth = new Date().getMonth() + 1;
+        var myTime = split1 + currentMonth + split2;
+        return myTime;
+    }
+
+
+    function SameAsConsignee() {
+        var isSameasConsignee = $('#SameAsConsigneeId').is(":checked");
+        if (isSameasConsignee ) {
+            $("#Notifier").addClass("disable");
+        }
+        else {
+            $("#Notifier").removeClass("disable");
+        }
+    }
+    function GetVariableDetailList()
+    {
+        $(".error").removeClass("error");
+        var DetailList = [];
+        var rowsCont = $('#tbhold').find('tbody tr').length;
+        var count = 1;
+        $('#tbhold').find('tbody tr').each(function ()
+        {
+            if (rowsCont == count) { return false; }//last row is Add(+) button
+            var obj = {};
+            obj.DetailId = $(this).find('.DetailId').val();
+            obj.ContainerNo = $(this).find('.ContainerNo').val();
+            obj.SealNo = $(this).find('.SealNo').val();
+            obj.NoOfContainers = $(this).find('.NoOfContainers').val();
+            obj.Description = $(this).find('.Description').val();
+            obj.GrossWeight = $(this).find('.GrossWeight').val();
+            obj.Measurement = $(this).find('.Measurement').val();
+            if (obj.ContainerNo == "")
+            {
+                $(this).find('.ContainerNo').addClass('error');
+                validation = false
+            }
+            DetailList.push(obj);
+            count++;
+        });
+        return DetailList;
+    }
+</script>
